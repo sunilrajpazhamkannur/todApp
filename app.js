@@ -1,9 +1,13 @@
+require('dotenv').config();
 const express =require('express')
 const app=express();
 const bodyParser =require('body-parser')
 const mongoose =require('mongoose');
 const methodOverride = require('method-override')
-const PORT=process.env.PORT ||  4000;
+const PORT=process.env.PORT || 4100;
+
+
+const url=process.env.DATABASE
 
 //SET VIEW ENGINE
 app.set('view engine','ejs')
@@ -21,12 +25,12 @@ app.use(bodyParser.json())
 app.use(methodOverride('_method'))
 
 //db connection
-const url='mongodb+srv://worldnet:fXkUrNMgYcRL5DFr@cluster0.eoz2y2j.mongodb.net/Diary?retryWrites=true&w=majority'
+//const url='mongodb+srv://worldnet:fXkUrNMgYcRL5DFr@cluster0.eoz2y2j.mongodb.net/Diary?retryWrites=true&w=majority'
 
 
     // Connect to the MongoDB cluster
      mongoose.connect(
-      url,      { useNewUrlParser: true, useUnifiedTopology: true })
+        url,      { useNewUrlParser: true, useUnifiedTopology: true })
       .then(console.log('DB-Connected...'))
       .catch(err=>console.log(err))
 
